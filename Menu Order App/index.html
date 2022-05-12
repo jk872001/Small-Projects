@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            display: grid;
+            grid-template-columns: repeat(2,500px);
+            margin: auto;
+            width: 1100px;
+            height: 600px;
+            align-items: center;
+            border: 2px solid black;
+            justify-content: center;
+            background-color: yellow;
+            
+        }
+        .container>div{
+            border: 2px solid black;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: red;
+        }
+        #food{
+            width: 200px;
+            height: 40px;
+            margin: 20px;
+            background-color: rgba(247, 247, 47, 0.726);
+
+        }
+        #btn{
+            width: 100px;
+            height: 40px;
+            background-color: black;
+            color: azure;
+            font-size: 15px;
+        }
+        body{
+            background-color: rgb(173, 101, 75);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h1>Choose Your Favourate Food Here:-</h1>
+        <select name="food" id="food">
+            <option value="burger">Burger</option>
+            <option value="pizza">Pizza</option>
+            <option value="coffe">Coffee</option>
+            <option value="roll">Kathi Roll</option>
+            <option value="momos">Momos</option>
+        </select>
+        <button id="btn" onclick="Order()">Order Food</button>
+        <h2>Order will prepare in Just 5sec</h2>
+    </div>
+    <div>
+        
+        <h1 id="show"></h1>
+        <img id="img" src="" alt="">
+    </div>
+    </div>
+</body>
+</html>
+<script>
+  function Order(){
+    //   let wait=document.getElementsByTagName("h2");
+    //   wait.textContent="Order Arriving in Just 5sec";
+  let status="open";
+    let order=document.getElementById("food").value;
+   let x=Math.round(Math.random()*9000000);
+  
+    let food_promise=new Promise(function (resolve,reject){
+        setTimeout(function(){
+            if(status==="open"){
+                resolve(`${order} Here is your order`);
+                // let showData=document.getElementById("show");
+                // showData.textContent=x;
+            }
+            else{
+                reject("McD is close")
+            }
+        },5000)
+    });
+    
+    food_promise.then(function(res){
+        console.log(res);
+    });
+    food_promise.catch(function (err){
+        console.log(err);
+    });
+    const myInterval = setTimeout(myTimer, 5000);
+
+function myTimer() {
+ 
+    let showData=document.getElementById("show");
+    showData.textContent=`Order ID :- ${x}`;
+    let image=document.getElementById("img");
+    image.src="https://i.pinimg.com/474x/1e/03/53/1e03537721828fe3e2069e5341fa766d.jpg";
+
+   
+}
+
+function myStopFunction() {
+   
+  clearInterval(myInterval);
+}
+// myStopFunction();
+}
+</script>
