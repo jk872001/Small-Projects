@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in</title>
+    <style>
+        body{
+        background-image: url("http://www.freeppt.net/background/april-weather-backgrounds-for-powerpoint.jpg");
+        background-repeat: no-repeat; 
+        background-size: cover;
+    }
+    #login-form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top:200px ;
+    }
+    input{
+        background:lightcyan;
+        border:none;
+        padding:5px 10px;
+        color:black;
+        margin: 10px;
+    }
+    form{
+        display:flex;
+        flex-direction: column;
+        
+        width:250px
+    }
+     button{
+        justify-content: center;
+        padding: 5px 30px;
+        background-color: greenyellow;
+        border: none;
+     }
+     h1{
+         color:white;
+         font-size:50px
+     }
+    </style>
+</head>
+
+<body>
+  
+    <div id="login-form">
+        <h1>Login</h1>
+        <form>
+          <input type="text" id="login-username" placeholder="Name" />
+          <input type="text" id="login-password" placeholder="Password" />
+        </form>
+
+        <button onclick="Login()">Login</button>
+        <p>Get back to <a href="Signup.html">Sign up</a> page</p>
+      </div>
+</body>
+</html>
+<script>
+
+     let Login=async ()=>{
+      try {
+        let log_data={
+        "password":document.getElementById("login-password").value,
+        "username":document.getElementById("login-username").value,
+      }
+      let login_data=JSON.stringify(log_data)
+
+
+      let res=await fetch("https://masai-api-mocker.herokuapp.com/auth/login",{
+          method:'POST',
+          body:login_data,
+          headers:{
+                "Content-Type":'application/json'
+            },
+      })
+      let data=await res.json()
+      console.log(data)
+      
+      getuser(log_data.username,data.token)
+      } 
+      catch (error) {
+          console.log(error)
+      }
+     
+  }
+  let getuser=async(username,token)=>{
+          try {
+            let res=await fetch(`https://masai-api-mocker.herokuapp.com/user/${username}`,{
+                headers:{
+                    "Content-Type":"application/json",
+                    Authorization:`Bearer ${token}`,
+                }
+            });
+            let data= await res.json() 
+            console.log(data)
+            switchscreen(data)
+          }
+           catch (error) {
+              console.log(error)
+          }
+       
+      }
+      function switchscreen(d){
+        if(d.description=='NONE'){
+                window.location.href="index.html"
+             }
+            else{
+            alert("Invalid Credentials, Try Again")
+            document.getElementById("login-password").value="",
+          document.getElementById("login-username").value=""
+            }
+        }
+</script>

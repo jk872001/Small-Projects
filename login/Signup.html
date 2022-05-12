@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+  </head>
+
+  <style>
+    body{
+        background-image: url("http://www.freeppt.net/background/april-weather-backgrounds-for-powerpoint.jpg");
+        background-repeat: no-repeat; 
+        background-size: cover;
+    }
+    #register-form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top:180px ;
+    }
+    input{
+        background:lightcyan;
+        border:none;
+        padding:5px 10px;
+        color:black;
+        margin: 10px;
+    }
+    form{
+        display:flex;
+        flex-direction: column;
+        
+        width:250px
+    }
+     button{
+        justify-content: center;
+        padding: 5px 30px;
+        background-color: greenyellow;
+        border: none;
+     }
+     h1{
+         color:white;
+         font-size: 50px;
+         text-align: center;
+     }
+     p{
+       text-align: center;
+     }
+
+  </style>
+  <body>
+    <h1>Get to know about weather of your city </h1>
+
+      <div id="register-form">
+        <h1>Register</h1>
+
+        <form>
+          <input type="text" id="name" placeholder="Name" />
+          <input type="text" id="username" placeholder="Username"/>
+          <input type="number" id="mobile" placeholder="Number" />
+          <input type="email" id="email" placeholder="Email" />
+          <input type="password" id="password" placeholder="Password" />
+          <p>Already user?<a href="Login.html"> Login
+          </a></p>
+         
+           
+        </form>
+
+        <button onclick="Register()">Register</button>
+      </div>
+
+     
+  </body>
+</html>
+<script>
+//  var apilink="https://masai-api-mocker.herokuapp.com/auth/register"
+//      var registerlink="https://masai-api-mocker.herokuapp.com/auth/register"
+//   var loginurl="https://masai-api-mocker.herokuapp.com/auth/login" 
+//   //api key
+  //
+
+ 
+ 
+  let Register=async ()=>{
+      try {
+
+    let register_data={
+        "name":document.getElementById("name").value,
+        "email":document.getElementById("email").value,
+        "password":document.getElementById("password").value,
+        "username":document.getElementById("username").value,
+        "mobile":document.getElementById("mobile").value,
+        "description":"NONE"
+        };
+        register_data=JSON.stringify(register_data)
+
+        let res=await fetch("https://masai-api-mocker.herokuapp.com/auth/register",{
+            method:'POST',
+            body: register_data,
+            headers:{
+                "Content-Type":'application/json'
+            },
+        })
+        let data=await res.json();
+        console.log(data)
+        switchscreen(data)  
+      } 
+      catch (error) {
+          console.log(error)
+      }
+  }
+  //Nilamdevi
+  
+  function switchscreen(d){
+    if(d.message=='Registration Success'){
+      window.location.href="Login.html"
+    }
+    
+  }
+</script>
