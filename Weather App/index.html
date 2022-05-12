@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .nav {
+        display: flex;
+        background-color: rgb(28, 41, 56);
+        color: white;
+        height: 50px;
+        padding: 25px 0 0 20px;
+        border-radius: 20px;
+        /* top right bottom left */
+      }
+      .left {
+        width: 70%;
+      }
+      .right {
+        display: flex;
+        justify-content: space-around;
+        width: 30%;
+      }
+      a {
+        text-decoration: none;
+        color: white;
+      }
+      .one{
+          font-size: 30px;
+          cursor: pointer;
+      }
+      #img{
+        margin-top: 20px;
+        width: 100%;
+        height: 500px;
+      }
+      #container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin: auto;
+        width: 95%;
+        margin-top: 15px;
+      }
+      select {
+        margin-top: 50px;
+      }
+      p{
+          font-size: 30px;
+          font-weight: bold;
+          margin: 0;
+      }
+      img{
+          width: 400px;
+          height: 300px;
+      }
+      .main{
+        width: 900px;
+        height: 90px;
+        border: 2px solid black;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: yellow;
+      }
+      #option{
+        width: 300px;
+        height: 20px;
+        margin-bottom: 10px;
+      }
+      body{
+        background-color: red;
+      }
+      .mapouter{position:relative;text-align:right;height:400px;width:500px;margin-left: 30px;}
+      .gmap_canvas {overflow:hidden;background:none!important;height:300px;width:400px;;}
+      #container2{
+          display: grid;
+          grid-template-columns: repeat(7,200px);
+          width: 90%;
+          margin: auto;
+      }
+      .container{
+          display: flex;
+          flex-direction: row;
+          width: 90%;
+          margin: auto;
+          justify-content: center;
+          align-items: center;
+          /* border: 1px solid black; */
+      }
+    </style>
+</head>
+<body>
+   <div class="main">
+  <input type="text" id="option">
+  <button onclick="getWeatherData()">Search Weather</button>
+</div>
+<h2></h2>
+<div class="container">
+      <div id="box1"></div>
+       <div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas"  frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://fmovies-online.net"></a><br><a href="https://www.embedgooglemap.net">embedgooglemap.net</a></div></div>
+    </div>
+    <h2></h2>
+      <div id="container2"></div>
+</body>
+</html>
+<script>
+
+    var key="2c30a9a8eae66b93eac7b8a44d06da72";
+          function getWeatherData()
+    {
+     let x=document.getElementById("option").value;
+     let iframe=document.getElementById("gmap_canvas");
+   var url=`https://api.openweathermap.org/data/2.5/weather?q=${x}&appid=${key}`
+   async function getData(){
+       try{
+           let res = await fetch(url);
+           let data= await res.json();
+           console.log(data);
+           showData(data);
+       }
+       catch(err){
+            console.log(err);
+           
+       }
+   }
+   getData();
+
+   var url2=`https://api.openweathermap.org/data/2.5/forecast?q=${x}&cnt=7&appid=${key}`
+   async function getData2(){
+       try{
+           let res = await fetch(url2);
+           let data= await res.json();
+           console.log(data);
+           showData2(data);
+       }
+       catch(err){
+            console.log(err);
+            errorMovie()
+       }
+   }
+   getData2();
+
+
+   function errorMovie(){
+     let eror=document.createElement("h2");
+     eror.innerText="No Movie Found";
+     document.querySelector("#container").append(eror);
+   }
+
+
+
+   function showData(data){
+    document.querySelector("#box1").innerHTML = "";
+       
+           let div= document.createElement("div");
+           
+           let title=document.createElement("p");
+           title.textContent=data.name;
+           let tempMin=document.createElement("p");
+           tempMin.innerText=`Min Temp:-${Math.floor(data.main.temp_min-273.15)}°C`;
+           let tempMax=document.createElement("p");
+           tempMax.innerText=`Max Temp:- ${Math.floor(data.main.temp_max-273.15)}°C`;
+           let Humidity=document.createElement("p");
+           Humidity.innerText=`Humidity:- ${data.main.humidity}`;
+           let Pressure=document.createElement("p");
+           Pressure.innerText=`Pressure:- ${data.main.pressure}`;
+           div.append(title,tempMin,tempMax,Humidity,Pressure);
+           iframe.src=`https://maps.google.com/maps?q=${data.name}&t=&z=13&ie=UTF8&iwloc=&output=embed`
+           document.querySelector("#box1").append(div);
+
+   }
+          }
+
+          function showData2(data){
+    document.querySelector("#container2").innerHTML = "";
+    let arr=["Monday Forecast","Tuesday Forecast","Wednesday Forecast","Thursday Forecast","Friday Forecast","Saturday Forecast","Sunday Forecast"]
+    
+    for(let i=0;i<=7;i++)
+           {
+            let head2=document.createElement('h2');
+             head2.textContent=arr[i];
+           let div= document.createElement("div");
+           
+           let title=document.createElement("p");
+           title.innerText=data.city.name;
+           
+           let tempMin=document.createElement("p");
+           tempMin.innerText=`Min Temp:-${Math.floor(data.list[i].main.temp_min-273.15)}°C`;
+           let tempMax=document.createElement("p");
+           tempMax.innerText=`Max Temp:- ${Math.floor(data.list[i].main.temp_max-273.15)}°C`;
+        //    let Humidity=document.createElement("p");
+        //    Humidity.innerText=`Humidity:- ${data.main.humidity}`;
+           let Pressure=document.createElement("p");
+           Pressure.innerText=`Pressure:- ${data.list[i].main.pressure}`;
+           div.append(head2,title,tempMin,tempMax,Pressure);
+        //    iframe.src=`https://maps.google.com/maps?q=${data.name}&t=&z=13&ie=UTF8&iwloc=&output=embed`
+           document.querySelector("#container2").append(div);}
+
+   }
+          
+</script>
