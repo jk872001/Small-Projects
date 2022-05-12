@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My-Unsplash</title>
+    <style>
+        p{
+            color:gray
+        }
+        #heading{
+            background-image:url("pexels-pixabay-358482.jpg");
+            height:500px;
+            width:1880px;
+            background-size: contain;
+            border: 1px solid white;
+
+        }
+        #heading>*{
+            color:white
+             
+        }
+        #heading>input{
+             margin-top: 20px;
+             margin-left: 480px;
+             width:700px;
+             height: 60px;
+             border-radius: 0px;
+             color: black;
+        }
+        h1{
+            font-size: 80px;
+            margin-bottom: -20px;
+        }
+        h4{
+            font-size: 20px;
+            margin-bottom: -20px;
+        }
+        #heading>div{
+            margin-top:180px;
+            margin-left: 480px;
+        }
+        input{
+            /* height:-50px; */
+            width:1400px;
+            padding:0px 30px;
+            border-radius: 20px;
+            border:none;
+            background-color: #EEEEEE;
+            color: black;
+        }
+        #header{
+            display:flex;
+            justify-content: space-between;
+        }
+        #header>img{
+            width: 30px;
+            height:30px;
+        }
+        #navigationbar{
+            display:flex;
+            justify-content: space-between;
+            margin-right: 20px;
+            /* width:2400px; */
+            
+        }
+        #body{
+            margin-top: 30px;
+            margin-left:300px;
+            width:600px;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            grid-template-rows: auto;
+            gap:30px;
+
+
+        }
+        button{
+            margin-top: 10px;
+            height: 30px;
+            border: 1px solid gray;
+            background-color: white;
+             
+        }
+        #likes{
+            width: 45px;
+            margin: 10px;
+        }
+        #likelikes{
+            display:flex;
+        
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="header">
+            <img src="https://cdn4.iconfinder.com/data/icons/logos-brands-5/24/unsplash-512.png"/>
+            <input  type="search" placeholder="Search free high-resolution photos" id ="searchbox"/> 
+             
+            <p>Advertise</p>
+            <p>Blog</p>
+            <button>Submit a photo</button>
+            <img src="bell-ring.png"/>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1024px-Circle-icons-profile.svg.png"/>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAP4AAADGCAMAAADFYc2jAAAAb1BMVEUAAAD///80NDSoqKj5+fnX19e/v7+Ghobd3d1dXV3T09Pq6urOzs6Li4v29valpaU8PDwSEhI/Pz+2traAgIBXV1fExMR0dHQjIyNnZ2fj4+MICAhGRkZubm6SkpK7u7scHBybm5tMTEwhISF6eno4IUryAAADkUlEQVR4nO2dXXeqMBBFB/lWECqKFlusLf//N95E5AJC+yZnLc/spz6erRWSTDIRZ4jvNvmbvCxveeNGI2Hp//SuL2zec8q8Of0MnWs5son+ZofOtCR5NdZP0IGWphzqB+g0yxP0+j46CwK/09+ik2DY3vVjdBAM761+ic6BIrnpr9AxUHxYfdovX2Rt9N/RIXA0Rh+dAYkjlO/8jkoKdAQkpdToCEgyCdERkKTc+qH5AIgJ5YqOgOQqhFP9nsC8+oipqEd9ZzPobdAhcOyNPvGo17fz/W90ChS3+b6zRsdAsW7X+j7ROTA096VOj6K298jp/zp/hI6CoOqrPIQ/f39Y46Mb+1XjCq9HVeuIuxJ/X98vv9ChluJUzu3ucIoPdLAlOATzm1vsJoegPuSrlyU/1MFmJDzWp0P1mVF9ZlSfGdVnRvWZUX1mVJ8Z1WdG9ZlRfWZUnxnVZ0b1mVF9ZlSfGdVnRvWZUX1mVJ8Z1WdG9Zl51N/4gfuyBP7mL/3yiN5u/XyOl1/0ac5yuzP6CdFxrp/kUZ+siUM61qc6yWOJh/oHdJrliXt9yjPsYadP2rmobPVJmzXKudXfo3OguFp91i/f4Bl9msHeFNfo5+gQOL4dIf7ft+0KiVt1iqy5e3YV3A3ram79kF2ful1hKi46AhJX6O5lGJJwD3s8cajuJBnzYcb8RBfSPOJyT3i3drmD9tWX3lZ7PHQMFJ4uddrlXoLK5pS9ljm0yNVC9vivJwXuH3Sk5ThNCtwOz32E52J2d4fjBAR39BzLofFka1NSoDcgPY8i+XNrEx+qz4zqM6P6zKg+M6rPjOozo/rMqD4zqs+M6jOj+syoPjOqz4zqM6P6zKg+M6rPjOozo/rMqD4zqs/MwxXklzTeoS8Kfx67OL38fgV5QXGg83v+AvqApmHfqZzoe1SneWJvrF+hAy1NNdRfo9Msj9/r0333lqrT977QURCcOv1PdBIM+1aftntHdNOnbdl2sPqET/2OyOhTnl5vCY0+OgOQL0cidAYkGyHtXNFSSo2OgCTjbliXcuuT9+sLuX/7V7mgIyC5iI+OgCSiHvUZedbZvuVo9Gmn+yIJ9Xx/dVvuoG1SXrZrfYT92izxfamTtFvntlvnp3z3+32VJ0BnWZ5gWOOje/wl4wpvRfX623WbHPr6PtEtFdnc7o5tfUbnWoKfzHPm9O0rIGvyF97k8bZq3Ggk/A9VZnPaV6QKvQAAAABJRU5ErkJggg=="/>
+        </div>
+        <div id="navigationbar">
+                <p>Editorial</p>
+                <p>Following</p>
+                <p>Enterpreneur</p>
+                <p>Wallpapers</p>
+                <p>3D Renders</p>
+                <p>Textures & Patterns</p>
+                <p>Architecture</p>
+                <p>Experimental</p>
+                <p>Nature</p>
+                <p>Business & Work</p>
+                <p>Fashion</p>
+                <p>Film</p>
+                <p>Food & Drink</p>
+                <p>Health & Wellness</p>
+                <p>Current Events</p>
+               
+        </div>
+        <div id='heading'>
+            <div>
+                <h1>unsplash</h1>
+                <h4>The interbet's source of freely-usable images</h4>
+                <h4>Powered by creators everywhere</h4>
+             </div>
+             
+             <input  type="search" placeholder="Search free high-resolution photos" id ="search_box"/> 
+        </div>
+        <div id="body">
+
+        </div>
+    </div>
+</body>
+</html>
+<script type="module">
+     import getdata from './index.js';
+    
+    let input=document.getElementById("search_box")
+    input.addEventListener("keypress",(e)=>{
+        // alert("searched")
+        if(e.key=='Enter'){
+           let input_val=input.value
+           localStorage.setItem('searchterm',(input_val))
+           window.location.href="search.html"
+        }
+    })
+    
+   
+    let url="https://api.unsplash.com/photos/?client_id=u6wEwe8Z6O3D74c9TUArDxu4pPExu2fjKq1W6MuXonc&per_page=30"
+    let mydata= await getdata(url);
+    console.log(mydata)
+    renderdata(mydata)
+    function renderdata(obj){
+        obj.forEach(function myobj(elem){
+        var div=document.createElement("div")
+        var div2=document.createElement("div")
+        var image=document.createElement('img');
+        div2.id="likelikes"
+        var likes=document.createElement("img");
+        var Likes=document.createElement("p")
+        var mytitle=document.createElement("p");
+        image.src=elem.urls.small;
+        
+        likes.id="likes"
+        Likes.textContent=elem.likes;
+        likes.src="toppng.com-red-heart-800x706.png"
+        mytitle.textContent=elem.alt_description
+        div2.append(likes,Likes)
+        div.append(image,mytitle,div2)
+        document.getElementById("body").append(div)
+         image.onclick=function click(){
+             localStorage.setItem("image",JSON.stringify(elem))
+             window.location.href="image.html"
+         }
+        })
+       
+
+    }
+
+</script>

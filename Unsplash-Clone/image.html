@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image</title>
+</head>
+<body>
+    <div id="body"> 
+
+    </div>
+</body>
+</html>
+<script>
+    var image=JSON.parse(localStorage.getItem("image"))
+   var data=[]
+   data.push(image)
+    console.log(data)
+    render(data)
+    function render(data){
+        data.forEach(function make(elem){
+            var div=document.createElement("div")
+            var image=document.createElement('img');
+            image.src=elem.urls.small;
+            var mytitle=document.createElement("p");
+            mytitle.textContent=elem.alt_description
+            div.append(image,mytitle)
+            document.getElementById("body").append(div)
+        })
+    }
+    
+</script>
