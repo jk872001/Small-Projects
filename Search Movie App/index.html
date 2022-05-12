@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .nav {
+        display: flex;
+        background-color: rgb(28, 41, 56);
+        color: white;
+        height: 50px;
+        padding: 25px 0 0 20px;
+        border-radius: 20px;
+        /* top right bottom left */
+      }
+      .left {
+        width: 70%;
+      }
+      .right {
+        display: flex;
+        justify-content: space-around;
+        width: 30%;
+      }
+      a {
+        text-decoration: none;
+        color: white;
+      }
+      .one{
+          font-size: 30px;
+          cursor: pointer;
+      }
+      #img{
+        margin-top: 20px;
+        width: 100%;
+        height: 500px;
+      }
+      #container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin: auto;
+        width: 95%;
+        margin-top: 15px;
+      }
+      select {
+        margin-top: 50px;
+      }
+      p{
+          font-size: 30px;
+          font-weight: bold;
+          margin: 0;
+      }
+      img{
+          width: 400px;
+          height: 300px;
+      }
+      .main{
+        width: 900px;
+        height: 90px;
+        border: 2px solid black;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: yellow;
+      }
+      #option{
+        width: 300px;
+        height: 20px;
+        margin-bottom: 10px;
+      }
+      body{
+        background-color: red;
+      }
+    </style>
+</head>
+<body>
+   <div class="main">
+  <input type="text" id="option">
+  <button onclick="moviesSrch()">Search Movie</button>
+</div>
+<h2></h2>
+      <div id="container">
+        
+      </div>
+</body>
+</html>
+<script>
+          function moviesSrch()
+    {
+     let x=document.getElementById("option").value;
+     let y=document.getElementsByTagName('h2');
+     y.innerText="No Movie Found";
+   var url=`http://www.omdbapi.com/?apikey=9d389a22&s=${x}`
+   async function getData(){
+       try{
+           let res = await fetch(url);
+           let data1= await res.json();
+           console.log(data1);
+           appendProducts(data1);
+       }
+       catch(err){
+            console.log(err);
+            errorMovie()
+       }
+   }
+   getData();
+
+
+   function errorMovie(){
+     let eror=document.createElement("h2");
+     eror.innerText="No Movie Found";
+     document.querySelector("#container").append(eror);
+   }
+
+    let moviesArr=[6.5,7.9,9.7,8.6,6.6,8.9,5.4,7.9,9.0,7.7,9.9];
+
+   function appendProducts(data1){
+    document.querySelector("#container").innerHTML = "";
+       data1.Search.forEach(function (el){
+           let div= document.createElement("div");
+           let img=document.createElement("img");
+           img.src= el.Poster;
+           let title=document.createElement("p");
+           title.innerText=el.Title;
+           let release=document.createElement("p");
+           release.innerText=`Release Year:-${el.Year}`;
+           let price=document.createElement("p");
+           price.innerText=`IMDB Rating:- ${el.imdbID}`;
+           div.append(img,title,release,price);
+           document.querySelector("#container").append(div);
+       })
+   }
+          }
+</script>
