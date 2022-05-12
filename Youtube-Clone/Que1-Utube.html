@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+          *{
+    margin: 0;
+    padding: 0;
+}
+nav{
+    font-family: 'Ubuntu', sans-serif;
+    border: 1px solid white;
+
+}
+nav>ul{
+    display: flex;
+    background-color: black;
+    height: 65px;
+    list-style-type: none;
+    color: white;
+    align-items: center;
+}
+nav>ul>li{
+    padding: 0px 16px;
+}
+.brand>img{
+    width: 45px;
+    padding: 0px 8px;
+}
+.brand{
+    display: flex;
+    align-items: center;
+    font-weight: bolder;
+    font-size: 1.3rem;
+}
+#search{
+    width: 700px;
+    height: 40px;
+    border: 1px solid white;
+    background-color: white;
+    font-size: 20px;
+}
+#search_results {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      grid-gap: 10px;
+
+      justify-content: space-between;
+      margin-top: 5%;
+    }
+    #search_results>div>img{
+        width: 460px;
+        height:260px ;
+    }
+    body{
+         background-color: black;
+    }
+        #container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin: auto;
+        width: 95%;
+        margin-top: 0px;
+        /* border: 1px solid red; */
+      }
+    button{
+        width: 120px;
+        height: 35px;
+        margin: 15px;
+        font-size: 25px;
+        background-color: grey;
+        color: white;
+
+    }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li class="brand"><img src="https://i.pinimg.com/474x/3a/36/20/3a36206f35352b4230d5fc9f17fcea92.jpg" alt="Youtube">Youtube</li>
+            <input type="text" placeholder="Search" id="search">
+            <button onclick="searchVideos()">Search</button>
+
+           
+        </ul>
+    </nav>
+    <div id="search_results"></div>
+    <div id="container"></div>
+        
+    
+</body>
+</html>
+<script>
+    moviesSrch()
+    //
+  //https://youtube.googleapis.com/youtube/v3/search?q=tesla&key=[YOUR_API_KEY]
+
+  let API = "AIzaSyAgYp82UnCga0VnCdTRFqGosQBQu-TU71s";
+
+let search_results_div = document.getElementById("search_results");
+
+async function searchVideos() {
+  try {
+    let inp = document.getElementById("search").value;
+
+    let res = await fetch(
+      `https://youtube.googleapis.com/youtube/v3/search?q=${inp}&key=${API}&type=video&maxResults=20&part=snippet`
+    );
+
+    let data = await res.json();
+    console.log("data:", data);
+
+    let array_of_videos = data.items;
+
+    appendVideos(array_of_videos);
+  } catch (err) {
+    console.log("err:", err);
+  }
+}
+
+const appendVideos = (arr) => {
+  arr.forEach(({ id: { videoId },snippet:{title} }) => {
+    console.log("videoId:",videoId);
+    let div = document.createElement("div");
+      let image=document.createElement('img');
+      image.src=`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+      let Title=document.createElement('h3')
+      Title.textContent=title;
+    // let iframe = document.createElement("iframe");
+    // iframe.src = ``;
+    // image.width = "460px";
+    // image.height = "260px";
+    //iframe.allowfullscreen = "true";
+
+    // iframe.setAttribute("allowfullscreen", true);
+
+    div.append(image,Title);
+
+    search_results_div.append(div);
+  });
+};
+
+
+
+
+
+function moviesSrch()
+{
+//  let x=document.getElementById("option").value;
+//  let y=document.getElementsByTagName('h2');
+//  y.innerText="No Movie Found";
+
+async function getData(){
+try{
+ let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?q=karma&key=AIzaSyAgYp82UnCga0VnCdTRFqGosQBQu-TU71s&type=video&maxResults=20`);
+ let data1= await res.json();
+ console.log(data1);
+ let secondData=data1.items;
+ appendProducts(secondData);
+}
+catch(err){
+  console.log(err);
+//   errorMovie()
+}
+}
+getData();
+
+
+function errorMovie(){
+let eror=document.createElement("h2");
+eror.innerText="No Movie Found";
+document.querySelector("#container").append(eror);
+}
+
+
+
+const appendProducts=(arr2)=>{
+document.querySelector("#container").innerHTML = "";
+arr2.forEach(({ id: { videoId }})=>{
+ let div= document.createElement("div");
+ let iframe = document.createElement("iframe");
+    iframe.src = `https://www.youtube.com/embed/${videoId}`;
+    iframe.width = "460px";
+    iframe.height = "260px";
+    iframe.allowfullscreen = "true";
+ div.append(iframe);
+ document.querySelector("#container").append(div);
+})
+}
+}
+</script>

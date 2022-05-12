@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <style>
+    body{
+      background-color: black;
+    }
+    #movies {
+      height: 200px;
+      width: 706px;
+      border: solid 1px black;
+      border-top: none;
+      overflow:hidden;
+      background-color: black;
+      color: white;
+      margin-left: 150px;
+    }
+    *{
+    margin: 0;
+    padding: 0;
+}
+nav{
+    font-family: 'Ubuntu', sans-serif;
+    border: 1px solid white;
+
+}
+nav>ul{
+    display: flex;
+    background-color: black;
+    height: 65px;
+    list-style-type: none;
+    color: white;
+    align-items: center;
+}
+nav>ul>li{
+    padding: 0px 16px;
+}
+.brand>img{
+    width: 45px;
+    padding: 0px 8px;
+}
+.brand{
+    display: flex;
+    align-items: center;
+    font-weight: bolder;
+    font-size: 1.3rem;
+}
+#query{
+    width: 700px;
+    height: 40px;
+    border: 1px solid white;
+    background-color: black;
+    font-size: 20px;
+    color: azure;
+}
+a{
+  text-decoration: none;
+}
+  </style>
+  <body>
+    <nav>
+      <ul>
+          <li class="brand"><img src="https://i.pinimg.com/474x/12/d0/45/12d04587f205ba8accecb35de93f790b.jpg" alt="Youtube">Netflix</li>
+          
+          <input type="text" placeholder="Search" oninput="throttleFunction(main,1000)" id="query">
+          <li class="brand"><a href="Que1.html">Home</a></li>
+          <li class="brand"><a href="trending.html">Trending Movies</a></li>
+      </ul>
+  </nav>
+    
+
+  
+
+    <div id="movies"></div>
+  </body>
+</html>
+<script>
+     var timerId;
+
+let movies_div = document.getElementById("movies");
+
+async function searchMovies(name) {
+  movies_div.innerHTML = null;
+
+  let response = await fetch(`https://www.omdbapi.com/?s=${name}&apikey=d806bd70`);
+
+  let data = await response.json();
+
+  return data.Search;
+}
+
+async function appendMovies(m) {
+  if (m === undefined) {
+    return false;
+  }
+
+  m.forEach(({ Title }) => {
+    let p = document.createElement("p");
+
+    p.innerText = Title;
+
+    movies_div.append(p);
+  });
+}
+
+function throttleFunction(func, delay) {
+  // If setTimeout is already scheduled, no need to do anything
+  if (timerId) {
+    clearTimeout(timerId);
+  }
+
+  // Schedule a setTimeout after delay seconds
+  timerId = setTimeout(function () {
+    func();
+  }, delay);
+}
+
+async function main() {
+  let name = document.getElementById("query").value;
+
+  if (name.length <= 2) {
+    return false;
+  }
+
+  console.log("fired");
+
+  let m = await searchMovies(name);
+
+  appendMovies(m);
+}
+
+//1. get input value
+//2. search movie by name
+//3. append movies
+//4. add edgecases
+//5. need of debouncing
+//6. implement debounce function
+
+</script>
