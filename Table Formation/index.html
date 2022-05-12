@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <div>
+            <form action="">
+                <label for="">Student Name</label>
+                <input type="text" id="first">
+                <br>
+                <label for="">Student Number</label>
+                <input type="number" id="second">
+                <br>
+                <label for="">Student City</label>
+                <input type="text" id="third">
+                <br>
+                <input type="submit" value="submit" />
+            </form>
+
+        </div>
+        <div>
+            <table style="border: 1px;">
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Student Number</th>
+                        <th>Student City</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    document.querySelector("form").addEventListener("submit", toaddDetails);
+  var toaddstudentArr = JSON.parse(localStorage.getItem("localObject"))||[]
+  showTable(toaddstudentArr);
+
+//   window.addEventListener("load", function () {
+//     createTable(todoArr);
+//   });
+
+  function toaddDetails(event) {
+    event.preventDefault();
+    var stuName = document.querySelector("#first").value;
+    var stuNumber = document.querySelector("#second").value;
+    var stuCity = document.querySelector("#third").value;
+    
+    console.log(stuName,stuNumber,stuCity);
+    //----------------------------------------------------
+
+    var stuObject = { studentName: stuName, studentNumber:stuNumber , studentCity:stuCity};
+    toaddstudentArr.push(stuObject);
+    localStorage.setItem("localObject", JSON.stringify(toaddstudentArr));
+    //----------------------------------------------------
+    showTable(toaddstudentArr);
+  }
+
+  function showTable(toaddstudentArr) {
+   
+    //------------------------------------------------------
+    document.querySelector("tbody").innerHTML = "";
+    toaddstudentArr.map(function (elem) {
+      var tr = document.createElement("tr");
+
+      var td1 = document.createElement("td");
+      td1.textContent = elem.studentName;
+
+      var td2 = document.createElement("td");
+      td2.textContent = elem.studentNumber;
+
+      var td3 = document.createElement("td");
+      td3.textContent = elem.studentCity;
+
+     
+
+      tr.append(td1, td2, td3);
+
+      document.querySelector("tbody").append(tr);
+      //------------------------------------------------
+    });
+  }
+</script>

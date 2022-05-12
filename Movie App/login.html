@@ -1,0 +1,125 @@
+3<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+         .nav {
+        display: flex;
+        background-color: rgb(28, 41, 56);
+        color: white;
+        height: 50px;
+        padding: 25px 0 0 20px;
+        border-radius: 20px;
+        /* top right bottom left */
+      }
+      .left {
+        width: 70%;
+      }
+      .right {
+        display: flex;
+        justify-content: space-around;
+        width: 30%;
+      }
+     
+      .one{
+          font-size: 30px;
+          cursor: pointer;
+      }
+        #container{
+            display: flex;
+            flex-direction: row;
+            width: 500px;
+            height: 500px;
+            /* border: 1px solid black; */
+            justify-content: center;
+            align-content: center;
+            margin: auto;
+            background-color: #F7F5C9;
+            box-shadow: rgba(240, 46, 170, 0.4) -5px 5px, rgba(240, 46, 170, 0.3) -10px 10px, rgba(240, 46, 170, 0.2) -15px 15px, rgba(240, 46, 170, 0.1) -20px 20px, rgba(240, 46, 170, 0.05) -25px 25px;
+        }
+        .entry{
+           margin-top: 13px;
+           margin-bottom: 13px;
+
+        }
+       .signup{
+           
+            /* border: 1px solid black; */
+            width: 300px;
+            height: 240px;
+          margin-top: 100px;
+          background-color: #F7F5C9;
+          padding: 5px;
+        }
+      body{
+          background-color: #1E85B8;
+      }
+      .already{
+          margin-left: 25px;
+          margin-top: 19px;
+      }
+      #btnsign{
+          background-color: black;
+          color: white;
+          width: 80px;
+          height: 25px;
+
+      }
+    </style>
+  </head>
+  <body>
+    <div class="nav">
+        <div class="left"></div>
+        <div class="right">
+         
+          
+          <div class="one" onclick="window.location.href='index.html'">Home</div>
+          <div class="one" onclick="window.location.href='login.html'">Login</div>
+          <div class="one" onclick="window.location.href='signup.html'">Signup</div>
+        </div>
+      </div>
+      <div id="container">
+      <div class="signup">
+          <h1>Login</h1>
+          
+    <form id="form">
+        
+      
+       <label for="">Enter Your Username</label>
+       <div class="entry"><input id="user" type="text" required /></div>
+       <label for="">Enter Your Password</label>
+       <div class="entry"><input id="pass" type="password" required/></div>
+       <div class="entry"><input type="submit" value="Login" id ="btnsign"/></div>
+    </form>
+    <h3 class="already">Want to Sign Up?  <span><a href="signup.html">Sign Up</a></span></h3>
+</div>
+</div>
+  </body>
+</html>
+
+<script>
+   document.querySelector("form").addEventListener("submit",Login);
+
+var regdUsers = JSON.parse(localStorage.getItem("userDataBase"));
+
+function Login(event) {
+  event.preventDefault();
+  var User = document.querySelector("#user").value;
+  var Password = document.querySelector("#pass").value;
+
+  for (var i = 0; i < regdUsers.length; i++) {
+    console.log(regdUsers[i].userName, regdUsers[i].userPass);
+    if (regdUsers[i].userName == User && regdUsers[i].userPass == Password) {
+      window.location.href = "index.html";
+      break;
+    }
+    else{
+        //   alert("Wrong Details")
+    }
+  }
+}
+</script>
+

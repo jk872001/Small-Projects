@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            background-color: cornsilk;
+            /* height: 250px; */
+            width: 60%;
+            margin: auto;
+            display: grid;
+            grid-gap:10px;
+            justify-content: space-around;
+            box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        }
+    button{
+        width:70px;
+        height: 50px;
+       background-color:rgb(248, 227, 227);
+       border:none;
+       margin: 20px auto;
+       box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    }
+    button:hover{
+        cursor: pointer;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    }
+    h1{
+        width:50%;
+        margin: auto;
+        height:80px;
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+      color:red;
+      text-align: center;
+      padding-top: 20px;
+    }
+</style>
+</head>
+<body>
+    <h1>Mini JS Datatype Learning App</h1>
+    <div id="container">
+     
+   
+
+    </div>
+</body>
+</html>
+
+<script>
+    //box1
+        var box1= document.createElement("div");
+        // box1.setAttribute("id","b1");
+        var btn1=document.createElement("button");
+        // btn1.getElementById("id","btn1");
+        btn1.textContent="object";
+        box1.append(btn1);
+        var text1=document.createElement("ul");
+        var text2=document.createElement("ul");
+        var text3=document.createElement("ul");
+        var text4=document.createElement("ul");
+        btn1.addEventListener("click",object );
+        function object(){
+            var inner1=document.createElement("div");
+           
+            text1.textContent="we can  store information in object in key value pair";
+            text2.textContent="Primitive and non primitive data types both can be stored in object";
+            text3.textContent= "functions in object is called methods ";
+            text4.textContent="Object is a non primitive data type";
+            inner1.append(text1,text2,text3,text4);
+            // document.querySelector("#container").append(inner1);        
+            box1.append(inner1);
+        }
+        //<--------------------------------------------------------------------------------------->
+       var box2=document.createElement("div");
+       var btn2=document.createElement("button");
+       btn2.textContent="Arrays";
+       box2.append(btn2);
+       var txt1=document.createElement("ul");
+        var txt2=document.createElement("ul");
+        var txt3=document.createElement("ul");
+        var txt4=document.createElement("ul");
+        btn2.addEventListener("click",array);
+        function array(){
+            var inner2=document.createElement("div");
+            txt1.textContent="Array is non Primitive DataType.";
+           
+            txt2.textContent="Sorting multiples values as a long list.";
+            txt3.textContent="we can store any type of data in array such as number, strings  and boolean.";
+            txt4.textContent="Array is collection of data of same kind .";
+            inner2.append(txt1,txt2,txt3,txt4);
+            box2.append(inner2);
+        }
+        //<---------------------------------------------------------------------------------------->
+        var box3=document.createElement("div");
+       var btn3=document.createElement("button");
+       btn3.textContent="Functions";
+       box3.append(btn3);
+       var txt1=document.createElement("ul");
+        var txt2=document.createElement("ul");
+        var txt3=document.createElement("ul");
+        var txt4=document.createElement("ul");
+        btn3.addEventListener("click", func);
+        function func(){
+            var inner3=document.createElement("div");
+            txt1.textContent="Functions are non Primitive data types.";
+            txt2.textContent="They execute a block of code.";
+            txt3.textContent="Functions only work on calling of it.";
+        
+            inner3.append(txt1,txt2,txt3);
+            box3.append(inner3);
+        }
+        //<---------------------------------------------------------------------------------->
+        var box4=document.createElement("div");
+       var btn4=document.createElement("button");
+       btn4.textContent="Strings";
+       box4.append(btn4);
+       var txt1=document.createElement("ul");
+        var txt2=document.createElement("ul");
+        var txt3=document.createElement("ul");
+        var txt4=document.createElement("ul");
+        btn4.addEventListener("click",str);
+        function str(){
+            var inner4=document.createElement("div");
+            txt1.textContent="Strings are Primitive Data type.";
+            txt2.textContent="Strings is sequence of characters.";
+            txt3.textContent="No mathematical operations can be performed on it.";
+          
+            inner4.append(txt1,txt2,txt3);
+            box4.append(inner4);
+        }
+//<---------------------------------------------------------------------------------------------------->
+
+
+        var box5=document.createElement("div");
+       var btn5=document.createElement("button");
+       btn5.textContent="Numbers";
+       box5.append(btn5);
+       var txt1=document.createElement("ul");
+        var txt2=document.createElement("ul");
+        var txt3=document.createElement("ul");
+        var txt4=document.createElement("ul");
+        btn5.addEventListener("click",num);
+        function num(){
+            var inner5=document.createElement("div");
+            txt1.textContent="Number is a primitive Data Type.";
+            txt2.textContent="It represent the numerical value.";
+            txt3.textContent="It has many build in math methods.";
+           
+            inner5.append(txt1,txt2,txt3);
+            box5.append(inner5);
+        }
+
+     //<-------------------------------------------------------------------------------------------------------->
+
+
+        var box6=document.createElement("div");
+       var btn6=document.createElement("button");
+       btn6.textContent="Null";
+       box6.append(btn6);
+       var txt1=document.createElement("ul");
+        var txt2=document.createElement("ul");
+        var txt3=document.createElement("ul");
+        var txt4=document.createElement("ul");
+        btn6.addEventListener("click",empty);
+        function empty(){
+            var inner6=document.createElement("div");
+            txt1.textContent="Null is a primitive data type.";
+            txt2.textContent="Null doesn't pass any value i.e empty.";
+            txt3.textContent="we assign null to variable or object to wipe out all the data in it.";
+            txt4.textContent="It a special value that is frequently used .";
+            inner6.append(txt1,txt2,txt3,txt4);
+            box6.append(inner6);
+        }
+      //<------------------------------------------------------------------------------------------>
+
+        var box7=document.createElement("div");
+       var btn7=document.createElement("button");
+       btn7.textContent="Undefined";
+       box7.append(btn7);
+       var txt1=document.createElement("ul");
+        var txt2=document.createElement("ul");
+        var txt3=document.createElement("ul");
+        
+        btn7.addEventListener("click",zero);
+        function zero(){
+            var inner7=document.createElement("div");
+            txt1.textContent="It is a primitive data type.";
+            txt2.textContent="Value is not assigned.";
+            txt3.textContent="Whenever we get an output as undefined that means we are not passing value to our function.";
+           
+            inner7.append(txt1,txt2,txt3);
+            box7.append(inner7);
+        }
+
+
+
+
+        document.querySelector("#container").append(box1,box2,box3,box4,box5,box6,box7);
+</script>
