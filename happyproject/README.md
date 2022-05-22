@@ -21,7 +21,7 @@ I used Redux Hooks and with it I also used `redux-persist` to save some data to 
 ## Setup Project:
 
 ```sh
-$ cd redux-shopping-cart
+$ cd happayproject
 $ npm install
 $ npm start
 ```
