@@ -1,15 +1,4 @@
-## Shopping Cart Application
 
-This shopping cart application demonstrates how React components and Redux can be used to create a user-friendly experience with instant visual updates and scalable code in e-commerce applications.
-
-> ### 🎆✨ Live Demo: [Shopping Cart ](https://redux-shop-mobile.netlify.app/)
----
-
-### Gif From Site
-![ezgif com-video-to-gif](https://user-images.githubusercontent.com/67821216/118515203-daff8900-b73d-11eb-9a86-e175df0364fa.gif)
-##
-
----
 
 ## Technologies and tools used:
 
